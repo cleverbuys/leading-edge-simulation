@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { 
   Crosshair, 
+  Menu, 
+  X, 
   Settings2, 
   Cpu, 
   MonitorPlay, 
@@ -15,9 +17,10 @@ import {
   ArrowUpRight
 } from "lucide-react";
 
-import cockpitImage1 from "@assets/image_1774893066806.jpeg";
-import cockpitImage2 from "@assets/image_1774893088131.jpeg";
-import cockpitImage3 from "@assets/image_1774893139004.jpeg";
+const basePath = import.meta.env.BASE_URL;
+const cockpitImage1 = `${basePath}images/cockpit-1.jpeg`;
+const cockpitImage2 = `${basePath}images/cockpit-2.jpeg`;
+const cockpitImage3 = `${basePath}images/cockpit-3.jpeg`;
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
   <motion.div
@@ -48,9 +51,9 @@ const RevealPanel = ({ children, delay = 0, className = "" }: { children: React.
 export default function Home() {
   const { scrollYProgress } = useScroll();
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
   
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.add('dark');
@@ -61,6 +64,7 @@ export default function Home() {
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
       setActiveSection(id);
+      setMobileMenuOpen(false);
     }
   };
 
@@ -86,11 +90,39 @@ export default function Home() {
             ))}
           </div>
           <div className="md:hidden flex items-center">
-             <button className="text-primary"><Settings2 /></button>
+             <button 
+               onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+               className="text-primary"
+               data-testid="mobile-menu-toggle"
+             >
+               {mobileMenuOpen ? <X /> : <Menu />}
+             </button>
           </div>
         </div>
         {/* Decorative HUD line */}
         <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border/50"
+          >
+            <div className="flex flex-col px-6 py-4 gap-3 font-serif text-sm">
+              {['home', 'about', 'capabilities', 'expertise', 'team', 'contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollTo(item)}
+                  className={`uppercase tracking-wider transition-colors text-left py-2 hover:text-primary ${activeSection === item ? 'text-primary' : 'text-muted-foreground'}`}
+                  data-testid={`mobile-nav-link-${item}`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </nav>
 
       {/* Hero Section */}
