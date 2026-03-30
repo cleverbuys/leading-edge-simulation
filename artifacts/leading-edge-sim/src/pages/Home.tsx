@@ -132,10 +132,10 @@ export default function Home() {
             <img 
               src={cockpitImage1} 
               alt="Flight Simulator Cockpit" 
-              className="w-full h-full object-cover opacity-30 mix-blend-luminosity grayscale contrast-125"
+              className="w-full h-full object-cover opacity-50 contrast-110 brightness-110"
             />
           </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
           <div className="absolute inset-0 tech-grid opacity-30" />
         </div>
 
@@ -224,7 +224,7 @@ export default function Home() {
                   <img 
                     src={cockpitImage2} 
                     alt="Instrument Panel" 
-                    className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000"
+                    className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-all duration-1000"
                   />
                   <div className="absolute inset-0 border border-primary/30 pointer-events-none" />
                   {/* HUD elements over image */}
@@ -297,7 +297,7 @@ export default function Home() {
           <img 
             src={cockpitImage3} 
             alt="Cockpit wide view" 
-            className="w-full h-full object-cover opacity-10 grayscale mask-image-to-r"
+            className="w-full h-full object-cover opacity-25 mask-image-to-r"
             style={{ maskImage: 'linear-gradient(to right, black, transparent)', WebkitMaskImage: 'linear-gradient(to right, black, transparent)' }}
           />
         </div>
