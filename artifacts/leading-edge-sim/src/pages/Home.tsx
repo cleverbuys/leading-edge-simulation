@@ -39,7 +39,7 @@ const RevealPanel = ({ children, delay = 0, className = "" }: { children: React.
     whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
-    className={`border border-border/50 bg-card/40 backdrop-blur-md relative overflow-hidden ${className}`}
+    className={`border border-border/50 bg-card/60 backdrop-blur-md relative overflow-hidden ${className}`}
   >
     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-50" />
     <div className="relative z-10">
