@@ -50,6 +50,15 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 
 ## Packages
 
+### `artifacts/leading-edge-sim` (`@workspace/leading-edge-sim`)
+
+Static marketing website for Leading Edge Simulation Ltd. React + Vite frontend-only (no backend). Single-page scrolling site with dark cockpit-inspired theme, green avionics accent colour, framer-motion animations. Uses three attached simulator cockpit images via `@assets` alias.
+
+- Entry: `src/App.tsx` — wouter router with single Home route
+- Main page: `src/pages/Home.tsx` — all sections (hero, about, capabilities, expertise, team, contact)
+- Theme: Dark background, green primary (#22c55e-ish), Space Grotesk font
+- No API calls or database — purely static
+
 ### `artifacts/api-server` (`@workspace/api-server`)
 
 Express 5 API server. Routes live in `src/routes/` and use `@workspace/api-zod` for request and response validation and `@workspace/db` for persistence.
